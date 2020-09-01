@@ -3,7 +3,7 @@
  var height=canvas.height/1.2;
  var flag=0;
 
- var x_pos=100;
+ var x_pos=180;
  var y_pos=height-1;
  var gr=0;
  var angle=(45*(Math.PI)/180);
@@ -30,21 +30,41 @@ var g=0.07;
    
 
     ctx.clearRect(0,0,canvas.width, canvas.height);
-    
     ctx.drawImage(img,x_pos,y_pos,30,30);
-    if(flag==1) {
-        x_pos-=h_vel;
-        y_pos+=v_vel;
-        gr-=0.07;
-        y_pos-=gr;
-        console.log('okkk');
+
+    if(flag==0){ 
+        forward();
+        clear_shot_f()
     }
-    else if(flag==0){ 
-        x_pos+=h_vel;
-        y_pos-=v_vel;
-        gr+=0.05 ;
-        y_pos+=gr;
-        console.log(y_pos, "->" ,x_pos);  }
+
+    else if(flag==1) {
+        backward();
+        clear_shot_b();
+    }
+
+
+    else if(flag==2){
+        forward();
+        drop_shot_f_f();
+    
+    }
+
+
+    else if(flag==3){
+        backward();
+        drop_shot_f_b();
+    
+    }
+    else if(flag==4){
+        forward();
+        drop_shot_b_f();
+
+    }
+    else if(flag==5){
+        backward();
+        drop_shot_b_b();
+        
+    }
   
     window.requestAnimationFrame(draw);
 
@@ -53,34 +73,81 @@ var g=0.07;
 
 
 function keydownF(ob){
-    if(ob.key =="Left" || ob.key =="ArrowLeft"){
+    
+    if(ob.key ==='e'){
+        flag=0;
+
+    }
+    
+    if(ob.key==='4'){
         flag=1;
+  
     }
 
-    if(ob.key =="Right" || ob.key =="ArrowRight"){
-        flag=0;
+
+    if(ob.key === 'r'){
+        flag=2;
     }
+
+    if(ob.key === '5'){
+        flag=3;
+    }
+
+
+    if(ob.key === 'y'){
+        flag=4;
+    }
+
+    if(ob.key === '+'){
+        flag=5;
+    }
+
+
 }
 
 
-//
+ function forward(){
+    x_pos+=h_vel;
+    y_pos-=v_vel;
+    y_pos+=gr;
+    console.log(y_pos, "->" ,x_pos);
+}
+
+ function backward(){
+  
+    x_pos-=h_vel;
+    y_pos+=v_vel;
+    y_pos-=gr;
+    console.log('okkk');
+    }
 
 
 
-// function clear_shot_forward(){
-//     flag=1;
-//     x_pos-=h_vel;
-//     y_pos+=v_vel;
-//     gr+=0.07;
-//     y_pos-=gr;
-//     console.log('ok');
-// }
+function clear_shot_f(){
+    gr+=0.07;
+}
 
-// function clear_shot_backward(){
-//     flag=0;
-//     x_pos+=h_vel;
-//     y_pos-=v_vel;
-//     gr+=0.07;
-//     y_pos+=gr;
-//     console.log(y_pos, "->" ,x_pos);   
-// }
+function clear_shot_b(){
+    gr-=0.07;
+}
+
+
+
+function drop_shot_f_f(){     //drop shot from front to front (forward)
+    gr+=0.35;
+}
+
+function drop_shot_f_b(){     //drop shot from front to front (backward)
+    gr-=0.35;
+}
+
+
+
+function drop_shot_b_f(){     //drop shot from back to front (forward)
+    gr+=0.1;
+}
+
+function drop_shot_b_b(){     //drop shot from back to front (backward)
+    gr-=0.1;
+}
+
