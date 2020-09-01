@@ -79,25 +79,25 @@ function keydownF(ob){
     
     if(ob.key ==='e'){
         flag=0;
-        gr=0;
+      //  gr=0;
 
     }
     
     if(ob.key==='4'){
         flag=1;
-        gr=0;
+        //gr=0;
   
     }
 
 
     if(ob.key === 'r'){
         flag=2;
-        gr=0;
+       // gr=0;
     }
 
     if(ob.key === '5'){
         flag=3;
-        gr=0;
+       // gr=0;
     }
 
 
