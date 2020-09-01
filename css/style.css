@@ -1,0 +1,62 @@
+@import "https://fonts.googleapis.com/css?family=Bree+Serif&display=swap";
+@import "https://fonts.googleapis.com/css2?family=Dosis:wght@500&display=swap";
+body {
+    margin: 0;
+    color: white;
+    background-size: cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-image: url("https://html5.gamedistribution.com/ec111b02d2554b599732a2d0a96419e5/media/graphics/game/bg/chara-select-bg.png");
+}
+
+ol {
+    font-family: 'Bree Serif', serif;
+    font-size: 1.3em;
+    text-align: center;
+}
+
+ul {
+    font-family: 'Dosis', sans-serif;
+    text-align: center;
+    text-align: justify;
+    text-justify: inter-word;
+    margin: 0% 10%;
+    font-size: 1.5em;
+}
+
+h1 {
+    font-family: 'Bree Serif', serif;
+    text-align: center;
+    font-size: 2.5em;
+}
+
+h2 {
+    font-family: 'Bree Serif', serif;
+    margin-left: 10px;
+    font-size: 2em;
+    text-align: center;
+}
+
+h3 {
+    font-family: 'Dosis', serif;
+    margin-left: 10px;
+    font-size: 1.5em;
+    text-align: center;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 30px;
+    font-weight: lighter;
+    text-decoration: none;
+    text-transform: uppercase;
+    border-radius: 200px;
+    margin-top: 5%;
+}
+
+.button {
+    background-color: transparent;
+    color: white;
+    margin-right: 15px;
+    border: 1px solid white;
+}
