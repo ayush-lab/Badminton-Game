@@ -1,0 +1,23 @@
+body {
+    background-color: darkgrey;
+}
+canvas {
+    border: 1px solid black;
+    background-image: url(/Images/back.png);
+    background-attachment: inherit;
+    background-repeat: no-repeat;
+    top: 10%;
+    position: absolute;
+    border-radius: 1rem;
+    left: 15%;
+    background-size: cover;
+    padding-bottom: 5rem;
+}
+h1 {
+    display: block;
+    font-size: 2em;
+    font-family: 'Megrim', bold;
+    font-weight: bold;
+    text-align: center;
+}
+

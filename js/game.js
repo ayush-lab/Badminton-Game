@@ -42,7 +42,7 @@ var g=0.07;
     else if(flag==0){ 
         x_pos+=h_vel;
         y_pos-=v_vel;
-        gr+=0.07;
+        gr+=0.05 ;
         y_pos+=gr;
         console.log(y_pos, "->" ,x_pos);  }
   
