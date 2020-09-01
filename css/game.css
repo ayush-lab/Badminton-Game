@@ -1,5 +1,7 @@
 body {
-    background-color: darkgrey;
+    background: #614385;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #516395, #614385);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #516395, #614385); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 .container{
@@ -8,13 +10,12 @@ body {
     align-content:center;
 }
 canvas {
-    margin-top:60px;
+    margin-top:100px;
     border: 1px solid black;
     background-image: url(/Images/back.png);
     background-attachment: inherit;
     background-repeat: no-repeat;
     border-radius: 1rem;
-
     background-size: cover;
     padding-bottom: 5rem;
 
@@ -24,7 +25,7 @@ canvas {
     color:white;
     top:30px;
     left:40vw;
-    font-size: 2em;
+    font-size: 3em;
     font-family: 'Megrim', bold;
     font-weight: bold;
     text-align: center;

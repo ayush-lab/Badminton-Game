@@ -1,4 +1,4 @@
- var canvas = document.getElementById('game');
+var canvas = document.getElementById('game');
  var ctx = canvas.getContext('2d');
  var height=canvas.height/1.2;
  var flag=0;
@@ -11,11 +11,16 @@
  var animationstart;
  var img = new Image();   
  
+ //AUDIO FILES
+var audioElement= new Audio('assests/introsong.mp3');
+
+
+audioElement.currentTime=0;
+audioElement.pause();
 
 img.src = '../Images/shuttle.svg';
 
-//img.onload = draw;
-                         
+
 document.addEventListener("keydown", keydownF, false);
 //document.addEventListener('keydown', clear_shot_forward);
 document.addEventListener('mousedown', mouseact, false);
@@ -172,4 +177,3 @@ function drop_shot_b_f(){     //drop shot from back to front (forward)
 function drop_shot_b_b(){     //drop shot from back to front (backward)
     gr+=0.1;
 }
-
