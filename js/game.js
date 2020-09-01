@@ -1,9 +1,10 @@
  var canvas = document.getElementById('game');
  var ctx = canvas.getContext('2d');
- var height=canvas.height;
+ var height=canvas.height/1.2;
+ var flag=0;
 
  var x_pos=100;
- var y_pos=height+1;
+ var y_pos=height-1;
  var gr=0;
  var angle=(45*(Math.PI)/180);
 
@@ -14,9 +15,11 @@
 
 img.src = '../Images/shuttle.svg';
 
-img.onload = draw;
+//img.onload = draw;
+window.requestAnimationFrame(draw);
+document.addEventListener("keydown", keydownF, false);
+//document.addEventListener('keydown', clear_shot_forward);
 
-addEventListener('keydown', clear_sshot);
 
 
 var h_vel=5.5;
@@ -29,56 +32,55 @@ var g=0.07;
     ctx.clearRect(0,0,canvas.width, canvas.height);
     
     ctx.drawImage(img,x_pos,y_pos,30,30);
-
-    if(y_pos>=height){
-    
+    if(flag==1) {
+        x_pos-=h_vel;
+        y_pos+=v_vel;
+        gr-=0.07;
+        y_pos-=gr;
+        console.log('okkk');
     }
+    else if(flag==0){ 
+        x_pos+=h_vel;
+        y_pos-=v_vel;
+        gr+=0.07;
+        y_pos+=gr;
+        console.log(y_pos, "->" ,x_pos);  }
+  
+    window.requestAnimationFrame(draw);
 
-    x_pos+=h_vel;
-    y_pos-=v_vel;
-    gr+=0.07;
-    y_pos+=gr;
-    console.log(y_pos, "__>" ,height);
-
-    requestAnimationFrame(draw);
   
 }
-var flag=1;
 
 
-function clear_sshot(){
-    flag=1;
-    clear_shot();
-}
-
-function clear_shot(){
-    
-    if(flag){ para();}
-    flag=0;
-    ctx.clearRect(0,0,canvas.width, canvas.height);
-    
-    ctx.drawImage(img,x_pos,y_pos,30,30);
-
-    if(y_pos>=height){
-    //location.reload();
+function keydownF(ob){
+    if(ob.key =="Left" || ob.key =="ArrowLeft"){
+        flag=1;
     }
 
-    x_pos+=h_vel;
-    y_pos-=v_vel;
-    gr+=0.07;
-    y_pos+=gr;
-    console.log(y_pos, "__>" ,height);
-
-    requestAnimationFrame(draw);
-    console.log("it works");
+    if(ob.key =="Right" || ob.key =="ArrowRight"){
+        flag=0;
+    }
 }
 
 
-function para(){
+//
 
-    var x_pos=100;
-    var y_pos=height+1;
-    var h_vel=5.5;
-    var v_vel=5.5;
-    var g=0.07;
-}
+
+
+// function clear_shot_forward(){
+//     flag=1;
+//     x_pos-=h_vel;
+//     y_pos+=v_vel;
+//     gr+=0.07;
+//     y_pos-=gr;
+//     console.log('ok');
+// }
+
+// function clear_shot_backward(){
+//     flag=0;
+//     x_pos+=h_vel;
+//     y_pos-=v_vel;
+//     gr+=0.07;
+//     y_pos+=gr;
+//     console.log(y_pos, "->" ,x_pos);   
+// }
