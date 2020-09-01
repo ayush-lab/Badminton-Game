@@ -34,7 +34,7 @@ var g=0.07;
 
     if(flag==0){ 
         forward();
-        clear_shot_f()
+        clear_shot_f();
     }
 
     else if(flag==1) {
@@ -46,6 +46,7 @@ var g=0.07;
     else if(flag==2){
         forward();
         drop_shot_f_f();
+        console.log("forward ->", gr);
     
     }
 
@@ -53,6 +54,7 @@ var g=0.07;
     else if(flag==3){
         backward();
         drop_shot_f_b();
+        console.log("backward->", gr);
     
     }
     else if(flag==4){
@@ -71,26 +73,31 @@ var g=0.07;
   
 }
 
+//  CONTROLS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 function keydownF(ob){
     
     if(ob.key ==='e'){
         flag=0;
+        gr=0;
 
     }
     
     if(ob.key==='4'){
         flag=1;
+        gr=0;
   
     }
 
 
     if(ob.key === 'r'){
         flag=2;
+        gr=0;
     }
 
     if(ob.key === '5'){
         flag=3;
+        gr=0;
     }
 
 
@@ -105,12 +112,14 @@ function keydownF(ob){
 
 }
 
+//////////////////////////////////          END OF CONTROLS          ///////////////////////////////////////////////// 
+
 
  function forward(){
     x_pos+=h_vel;
     y_pos-=v_vel;
     y_pos+=gr;
-    console.log(y_pos, "->" ,x_pos);
+   // console.log(y_pos, "->" ,x_pos);
 }
 
  function backward(){
@@ -118,7 +127,7 @@ function keydownF(ob){
     x_pos-=h_vel;
     y_pos+=v_vel;
     y_pos-=gr;
-    console.log('okkk');
+   // console.log('okkk');
     }
 
 
