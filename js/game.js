@@ -2,6 +2,7 @@ var canvas = document.getElementById('game');
 var ctx = canvas.getContext('2d');
 var height = canvas.height / 1.2;
 var flag = 0;
+var Distance;
 var x_pos = 180;
 var y_pos = height - 1;
 var gr = 0;
@@ -56,17 +57,21 @@ function draw() {
     ctx.drawImage(img, x_pos, y_pos, 30, 30);
     LeftPlayer();
     RightPlayer();
-    //  if(y_pos >= height || x_pos<180 || x_pos >1160){
-    //      cancelAnimationFrame(animationstart);
-    //  }
+    
+    if(y_pos >= height || x_pos<180 || x_pos >1160){
+          cancelAnimationFrame(animationstart);
+     }
 
 
-    //  else    
-    animationstart = requestAnimationFrame(draw);
+      else  animationstart = requestAnimationFrame(draw);
 
-    if (flag == 0) {
-        forward();
-        clear_shot_f();
+    if (flag == 0 ) {
+        // add  a body movement
+        
+      //  console.log();
+            forward();
+            clear_shot_f();
+        
     }
 
     else if (flag == 1) {
@@ -103,6 +108,7 @@ function draw() {
 //  CONTROLS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 function keydownF(ob) {
+
     if (ob.key == "a") {
         a_pressed = true;
     }
@@ -117,41 +123,64 @@ function keydownF(ob) {
     }
 
     if (ob.key === 'e') {
-        flag = 0;
-        gr = 0;
+ 
+        Distance = distance(left_player_x,left_player_y,x_pos,y_pos);
+
+        if(Distance<=200 && left_player_x<=x_pos) {
+            flag=0;
+            gr = 0;
+        }
+
 
     }
 
     if (ob.key === '4') {
-        flag = 1;
-        gr = 0;
+        Distance = distance(right_player_x,right_player_y,x_pos,y_pos);
+
+        if(Distance<=200 && right_player_x >= x_pos) {
+            flag=1;
+            gr = 0;
+        }
 
     }
 
 
     if (ob.key === 'r') {
-        flag = 2;
-        gr = 0;
+        Distance = distance(left_player_x,left_player_y,x_pos,y_pos);
+        if(Distance<=200 && left_player_x<=x_pos) {
+            flag=2;
+            gr = 0;
+        }
     }
 
     if (ob.key === '5') {
-        flag = 3;
-        gr = 0;
+         Distance = distance(right_player_x,right_player_y,x_pos,y_pos);
+        if(Distance<=200 && right_player_x>=x_pos) {
+            flag=3;
+            gr = 0;
+        }
     }
 
 
     if (ob.key === 'y') {
-        flag = 4;
-        gr = 0;
+        Distance = distance(left_player_x,left_player_y,x_pos,y_pos);
+        if(Distance<=200 && left_player_x<=x_pos) {
+            flag=4;
+            gr = 0;
+        }
     }
 
     if (ob.key === '+') {
-        flag = 5;
-        gr = 0;
-    }
+       Distance = distance(right_player_x,right_player_y,x_pos,y_pos);
+        
+        if(Distance<=200 && right_player_x>=x_pos) {
+            flag=5;
+            gr = 0;
+        }
 
+                        }
+    } // end of keydown function
 
-}
 function keyUpHandler(ob) {
     if (ob.key == "a") {
         a_pressed = false;
@@ -241,4 +270,9 @@ function drop_shot_b_b() {     //drop shot from back to front (backward)
 }
 function leftplayer() {
 
+}
+
+ function distance(x1,y1,x2,y2){
+    return Math.sqrt( Math.pow((x2-x1), 2) + Math.pow((y2-y1), 2) );
+      
 }
