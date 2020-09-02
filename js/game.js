@@ -23,6 +23,13 @@ var left_player_y = 600;
 var right_player_y = 600;
 var leftscore = 0;
 var rightscore = 0;
+
+// velocities
+var h_vel = 5.5;
+var v_vel = 5.5;
+//var g = 0.07;
+
+
 //AUDIO FILES
 var audioElement = new Audio('assests/introsong.mp3');
 
@@ -43,21 +50,18 @@ document.addEventListener('mousedown', mouseact, false);
 
 function mouseact(ob) {
     //alert(ob.clientX, " , ", ob.screenX, ',', ob.pageX);
-    alert(ob.clientX - 75);
+    alert(ob.clientY- 110);
 }
 
 animationstart = requestAnimationFrame(draw);
 
-var h_vel = 5.5;
-var v_vel = 5.5;
-var g = 0.07;
 
 function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.drawImage(img, x_pos, y_pos, 30, 30);
     LeftPlayer();
     RightPlayer();
-    
+    net_collision();
     if(y_pos >= height || x_pos<180 || x_pos >1160){
           cancelAnimationFrame(animationstart);
      }
@@ -272,7 +276,13 @@ function leftplayer() {
 
 }
 
- function distance(x1,y1,x2,y2){
+function distance(x1,y1,x2,y2){
     return Math.sqrt( Math.pow((x2-x1), 2) + Math.pow((y2-y1), 2) );
       
+}
+
+function net_collision(){
+    if( y_pos >=500 && x_pos > 690 && x_pos <720) { //690 720
+        alert("you hit the net");
+    }
 }
