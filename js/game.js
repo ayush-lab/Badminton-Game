@@ -10,9 +10,7 @@ var angle = (45 * (Math.PI) / 180);
 var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitCancelAnimationFrame;
 var cancelAnimationFrame = window.cancelAnimationFrame || window.mozCancelAnimationFrame;
 var animationstart;
-var img = new Image();
-var leftplayer = new Image();
-var rightplayer = new Image();
+
 var a_pressed = false;
 var d_pressed = false;
 var left_pressed = false;
@@ -39,14 +37,21 @@ var v_vel = 5.5;
 
 //AUDIO FILES
 var audioElement = new Audio('assests/introsong.mp3');
-
-
 audioElement.currentTime = 0;
 audioElement.pause();
 
+//images
+var img = new Image();
+var leftplayer = new Image();
+var rightplayer = new Image();
+var leftplayer_racket=new Image();
+var rightplayer_racket=new Image();
+
 img.src = '../Images/shuttle.svg';
 leftplayer.src = '../Images/left.png';
-rightplayer.src = '../Images/right.png'
+rightplayer.src = '../Images/right.png';
+leftplayer_racket.src='../Images/racket1.png';
+rightplayer_racket.src='../Images/racket1.png';
 
 
 document.addEventListener("keydown", keydownF, false);
@@ -240,6 +245,7 @@ function keyUpHandler(ob) {
 //////////////////////////////////          END OF CONTROLS          ///////////////////////////////////////////////// 
 function LeftPlayer() {
     ctx.beginPath();
+    ctx.drawImage(leftplayer_racket, left_player_x, left_player_y-60, 120, 120);
     ctx.drawImage(leftplayer, left_player_x, left_player_y, 120, 120);
     ctx.closePath();
     if (d_pressed && left_player_x < 580) {
@@ -252,6 +258,7 @@ function LeftPlayer() {
 }
 function RightPlayer() {
     ctx.beginPath();
+    ctx.drawImage(rightplayer_racket, right_player_x, right_player_y-60, 120, 120);
     ctx.drawImage(rightplayer, right_player_x, right_player_y, 120, 120);
     ctx.closePath();
     if (left_pressed && right_player_x > 710) {
