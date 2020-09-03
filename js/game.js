@@ -11,17 +11,24 @@ var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAni
 var cancelAnimationFrame = window.cancelAnimationFrame || window.mozCancelAnimationFrame;
 var animationstart;
 
+
+var img = new Image();
+var imgleftplayer = new Image();
+var imgrightplayer = new Image();
+var egg = new Image();
+
 var a_pressed = false;
+var s_pressed = false;
 var d_pressed = false;
 var left_pressed = false;
 var right_pressed = false;
+var down_pressed = false;
 var left_player_x = 120;
 var right_player_x = 1000;
 var left_player_y = 600;
 var right_player_y = 600;
 var leftscore = 0;
 var rightscore = 0;
-
 // jump
 
 var r_grr=0, l_grr=0;
@@ -54,14 +61,20 @@ leftplayer_racket.src='../Images/racket1.png';
 rightplayer_racket.src='../Images/racket1.png';
 
 
+=======
+var isCollide = false;
+img.src = '../Images/shuttle.svg';
+imgleftplayer.src = '../Images/left.png';
+imgrightplayer.src = '../Images/right.png'
+egg.src = '../Images/egg.png'
+>>>>>>> WinLogic
 document.addEventListener("keydown", keydownF, false);
 document.addEventListener("keyup", keyUpHandler, false);
-//document.addEventListener('keydown', clear_shot_forward);
 document.addEventListener('mousedown', mouseact, false);
-
 
 function mouseact(ob) {
     //alert(ob.clientX, " , ", ob.screenX, ',', ob.pageX);
+
     alert(ob.clientY- 110);
 }
 
@@ -70,6 +83,7 @@ animationstart = requestAnimationFrame(draw);
 
 function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+
     
     if(flag ==0 || flag ==2 || flag == 4) ctx.drawImage(img, x_pos, y_pos, 30, 30);
     else rotate_shuttle();
@@ -131,6 +145,15 @@ function draw() {
     }
 
 
+=======
+    ctx.drawImage(img, x_pos, y_pos, 30, 30);
+    EggLeft();
+    EggRight();
+    LeftPlayer();
+    RightPlayer();
+    StartMatch();
+    CheckGround();
+>>>>>>> WinLogic
 
 }
 
@@ -160,12 +183,16 @@ function keydownF(ob) {
     if (ob.key == "d") {
         d_pressed = true;
     }
+    if (ob.key == "s") {
+        s_pressed = true;
+    }
     if (ob.key == "ArrowLeft") {
         left_pressed = true;
     }
     if (ob.key == "ArrowRight") {
         right_pressed = true;
     }
+
 
     if (ob.key === 'e') {
  
@@ -223,36 +250,88 @@ function keydownF(ob) {
             gr = 0;
         }
 
+
                         }
     } // end of keydown function
 
 function keyUpHandler(ob) {
-    if (ob.key == "a") {
+    if (ob.key == "a" || ob.key == "A") {
         a_pressed = false;
     }
-    if (ob.key == "d") {
+    if (ob.key == "d" || ob.key == "D") {
         d_pressed = false;
     }
+
     if (ob.key == "ArrowLeft") {
         left_pressed = false;
     }
     if (ob.key == "ArrowRight") {
         right_pressed = false;
     }
+    if (ob.key == "ArrowDown") {
+        right_pressed = false;
+    }
 
 }
 
 //////////////////////////////////          END OF CONTROLS          ///////////////////////////////////////////////// 
+function EggLeft() {
+    var l_a = ctx.drawImage(egg, 0, 10, 70, 70);
+    var l_b = ctx.drawImage(egg, 60, 10, 70, 70);
+    var l_c = ctx.drawImage(egg, 120, 10, 70, 70);
+    var l_d = ctx.drawImage(egg, 180, 10, 70, 70);
+    var l_e = ctx.drawImage(egg, 240, 10, 70, 70);
+}
+function EggRight() {
+    var r_a=ctx.drawImage(egg, 938, 10, 70, 70);
+    var r_b=ctx.drawImage(egg, 998, 10, 70, 70);
+    var r_c=ctx.drawImage(egg, 1058, 10, 70, 70);
+    var r_d=ctx.drawImage(egg, 1118, 10, 70, 70);
+    var r_e=ctx.drawImage(egg, 1178, 10, 70, 70);
+}
+function ResetPosition() {
+
+}
+function CheckGround() {
+    if (y_pos >= canvas.height - 100) {
+
+        cancelAnimationFrame(animationstart);
+        ResetPosition();
+        if (x_pos <= canvas.width / 2) {
+            console.log("Left");
+            alert("Right Win");
+        }
+
+        else if (x_pos >= canvas.width / 2) {
+            console.log("Right");
+            alert("Left Win");
+        }
+    }
+    else {
+        animationstart = requestAnimationFrame(draw);
+    }
+}
+function StartMatch() {
+    if (s_pressed) {
+        forward();
+        clear_shot_f();
+    }
+
+}
 function LeftPlayer() {
     ctx.beginPath();
+
     ctx.drawImage(leftplayer_racket, left_player_x, left_player_y-60, 120, 120);
     ctx.drawImage(leftplayer, left_player_x, left_player_y, 120, 120);
+
+    ctx.drawImage(imgleftplayer, left_player_x, left_player_y, 120, 120);
+
     ctx.closePath();
     if (d_pressed && left_player_x < 580) {
-        left_player_x += 6;
+        left_player_x += 10;
     }
     if (a_pressed && left_player_x >= 100) {
-        left_player_x += -6;
+        left_player_x += -10;
     }
 
 }
@@ -260,13 +339,19 @@ function RightPlayer() {
     ctx.beginPath();
     ctx.drawImage(rightplayer_racket, right_player_x, right_player_y-60, 120, 120);
     ctx.drawImage(rightplayer, right_player_x, right_player_y, 120, 120);
+
+    ctx.drawImage(imgrightplayer, right_player_x, right_player_y, 120, 120);
+
     ctx.closePath();
-    if (left_pressed && right_player_x > 710) {
-        right_player_x += -6;
+    if (left_pressed && right_player_x > 750) {
+        right_player_x += -10;
     }
     if (right_pressed && right_player_x <= 1100) {
-        right_player_x += 6;
+        right_player_x += 10;
     }
+
+}
+function Collide() {
 
 }
 
