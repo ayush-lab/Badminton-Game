@@ -7,10 +7,10 @@ var x_pos = 180;
 var y_pos = height - 1;
 var gr = 0;
 var angle = (45 * (Math.PI) / 180);
+
 var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitCancelAnimationFrame;
 var cancelAnimationFrame = window.cancelAnimationFrame || window.mozCancelAnimationFrame;
 var animationstart;
-
 
 var img = new Image();
 var imgleftplayer = new Image();
@@ -57,9 +57,12 @@ var rightplayer_racket=new Image();
 img.src = '../Images/shuttle.svg';
 leftplayer.src = '../Images/left.png';
 rightplayer.src = '../Images/right.png';
-leftplayer_racket.src='../Images/racket1.png';
-rightplayer_racket.src='../Images/racket1.png';
+leftplayer_racket.src='../Images/racket.png';
+rightplayer_racket.src='../Images/racket.png';
 
+var racket_x=0;
+var x_movement=0;
+var racket_y=0;
 
 
 var isCollide = false;
@@ -93,6 +96,7 @@ function draw() {
     net_collision();
     Jump_left();
     Jump_right();
+    rotate_racket();
  
     // if(y_pos > height ){
     //       cancelAnimationFrame(animationstart);
@@ -163,6 +167,22 @@ function rotate_shuttle(){
     ctx.drawImage(img, -x_pos,-y_pos, 30,30);
     ctx.restore();
 }
+
+function rotate_racket(){
+   
+    ctx.save();
+    //ctx.translate(left_player_x/2,left_player_y/2);
+    ctx.translate(left_player_x,left_player_y);
+    ctx.fillStyle='black';
+    ctx.arc(0,0,1000,0, Math.PI*2);
+   
+    ctx.rotate(racket_x * Math.PI/180);
+    ctx.drawImage(leftplayer_racket,30,-60, 120, 120);
+    ctx.restore();
+    racket_x+=1;
+    x_movement+=0.1;
+}
+
 
 function EggLeft() {
     var l_a = ctx.drawImage(egg, 0, 10, 70, 70);
