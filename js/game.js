@@ -26,7 +26,7 @@ var rightscore = 0;
 
 // jump
 
-var grr=0;
+var r_grr=0, l_grr=0;
 var jump_speed=5;
 var jump_left =false;
 var jump_right=false;
@@ -72,13 +72,14 @@ function draw() {
     Jump_left();
     Jump_right();
     
-    if(y_pos > height ){
-          cancelAnimationFrame(animationstart);
+    // if(y_pos > height ){
+    //       cancelAnimationFrame(animationstart);
        
-     }
+    //  }
 
 
-    else  animationstart = requestAnimationFrame(draw);
+   // else 
+     animationstart = requestAnimationFrame(draw);
 
     
     
@@ -256,12 +257,12 @@ function Jump_left(){
     ctx.closePath();
 
     left_player_y-=jump_speed;
-    left_player_y+=grr;
-    grr+=0.1;
+    left_player_y+=l_grr;
+    l_grr+=0.1;
 
     if(left_player_y >600){
         left_player_y = 600;
-        grr=0;
+        l_grr=0;
         //jump_speed=0;
         jump_left=false;
         }
@@ -277,12 +278,12 @@ function Jump_right(){
     ctx.closePath();
 
     right_player_y-=jump_speed;
-    right_player_y+=grr;
-    grr+=0.1;
+    right_player_y+=r_grr;
+    r_grr+=0.1;
 
     if(right_player_y >600){
        right_player_y = 600;
-        grr=0;
+        r_grr=0;
         jump_right=false;
         }
     }
