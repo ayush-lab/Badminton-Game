@@ -150,7 +150,7 @@ function keydownF(ob) {
     if (ob.key === 'e') {
  
         Distance = distance(left_player_x,left_player_y,x_pos,y_pos);
-
+        jump_left=true;
         if(Distance<=200 && left_player_x<=x_pos) {
             flag=0;
             gr = 0;
