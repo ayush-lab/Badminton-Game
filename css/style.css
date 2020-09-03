@@ -1,5 +1,7 @@
 @import "https://fonts.googleapis.com/css?family=Bree+Serif&display=swap";
 @import "https://fonts.googleapis.com/css2?family=Dosis:wght@500&display=swap";
+
+
 body {
     margin: 0;
     color: white;
@@ -59,4 +61,45 @@ h3 {
     color: white;
     margin-right: 15px;
     border: 1px solid white;
+    position:relative;
 }
+
+.button:hover{
+    opacity:0.7;
+}
+
+
+.heading::after{
+    content: "";
+    display:inline-block;
+    height:3px;
+    width:100%;
+    position: absolute;
+    top:90px;
+    
+    left:0;
+    animation-name:project;
+    animation-duration:6s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    transition: transform 0.25s linear;
+    /* background: white; */
+    background:linear-gradient(#a1c4fd, #c2e9fb);
+}
+
+
+
+@keyframes project{
+    0% {transform: scaleX(1);}
+    15%{ transform: scaleX(0.7);}
+    30% { transform: scaleX(0.4);}
+    45% { transform: scaleX(0.1);}
+    60% { transform: scaleX(0.4);}
+    75% { transform: scaleX(0.7);}
+    90% { transform: scaleX(0.9);}
+    
+    100%{ transform: scaleX(1);}
+  
+  }
+  
+  

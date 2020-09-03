@@ -24,6 +24,13 @@ var right_player_y = 600;
 var leftscore = 0;
 var rightscore = 0;
 
+// jump
+
+var grr=0;
+var jump_speed=5;
+var jump_left =false;
+var jump_right=false;
+
 // velocities
 var h_vel = 5.5;
 var v_vel = 5.5;
@@ -62,12 +69,19 @@ function draw() {
     LeftPlayer();
     RightPlayer();
     net_collision();
-    if(y_pos >= height || x_pos<180 || x_pos >1160){
+    Jump_left();
+    Jump_right();
+    
+    if(y_pos > height ){
           cancelAnimationFrame(animationstart);
+       
      }
 
 
-      else  animationstart = requestAnimationFrame(draw);
+    else  animationstart = requestAnimationFrame(draw);
+
+    
+    
 
     if (flag == 0 ) {
         // add  a body movement
@@ -78,29 +92,29 @@ function draw() {
         
     }
 
-    else if (flag == 1) {
+    if (flag == 1) {
         backward();
         clear_shot_b();
     }
-    else if (flag == 2) {
+    if (flag == 2) {
         forward();
         drop_shot_f_f();
         console.log("forward ->", gr);
 
     }
 
-    else if (flag == 3) {
+    if (flag == 3) {
         backward();
         drop_shot_f_b();
         console.log("backward->", gr);
 
     }
-    else if (flag == 4) {
+     if (flag == 4) {
         forward();
         drop_shot_b_f();
 
     }
-    else if (flag == 5) {
+    if (flag == 5) {
         backward();
         drop_shot_b_b();
 
@@ -112,6 +126,13 @@ function draw() {
 //  CONTROLS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 function keydownF(ob) {
+
+    if(ob.keyCode==32){     //spacebar
+        jump_left=true;
+    }
+    if(ob.key =="0"){      
+        jump_right=true;
+    }
 
     if (ob.key == "a") {
         a_pressed = true;
@@ -227,6 +248,47 @@ function RightPlayer() {
 
 }
 
+function Jump_left(){
+    if(jump_left) {
+
+    ctx.beginPath();
+    ctx.drawImage(leftplayer, left_player_x, left_player_y, 120, 120);
+    ctx.closePath();
+
+    left_player_y-=jump_speed;
+    left_player_y+=grr;
+    grr+=0.1;
+
+    if(left_player_y >600){
+        left_player_y = 600;
+        grr=0;
+        //jump_speed=0;
+        jump_left=false;
+        }
+    }
+}
+
+
+function Jump_right(){
+    if(jump_right) {
+
+    ctx.beginPath();
+    ctx.drawImage(rightplayer, right_player_x, right_player_y, 120, 120);
+    ctx.closePath();
+
+    right_player_y-=jump_speed;
+    right_player_y+=grr;
+    grr+=0.1;
+
+    if(right_player_y >600){
+       right_player_y = 600;
+        grr=0;
+        jump_right=false;
+        }
+    }
+}
+
+
 
 function forward() {
     x_pos += h_vel;
@@ -282,7 +344,8 @@ function distance(x1,y1,x2,y2){
 }
 
 function net_collision(){
-    if( y_pos >=500 && x_pos > 690 && x_pos <720) { //690 720
-        alert("you hit the net");
+    if( y_pos >=530 && x_pos > 690 && x_pos <720) { //690 720
+        //alert("you hit the net");
+        location.reload();
     }
 }
