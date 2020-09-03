@@ -61,15 +61,14 @@ leftplayer_racket.src='../Images/racket1.png';
 rightplayer_racket.src='../Images/racket1.png';
 
 
-=======
+
 var isCollide = false;
 img.src = '../Images/shuttle.svg';
 imgleftplayer.src = '../Images/left.png';
 imgrightplayer.src = '../Images/right.png'
 egg.src = '../Images/egg.png'
->>>>>>> WinLogic
-document.addEventListener("keydown", keydownF, false);
-document.addEventListener("keyup", keyUpHandler, false);
+
+
 document.addEventListener('mousedown', mouseact, false);
 
 function mouseact(ob) {
@@ -107,7 +106,7 @@ function draw() {
     
     
 
-    if (flag == 0 ) {
+    if (flag == 0 && s_pressed ) {
         // add  a body movement
         
       //  console.log();
@@ -145,15 +144,13 @@ function draw() {
     }
 
 
-=======
-    ctx.drawImage(img, x_pos, y_pos, 30, 30);
+
     EggLeft();
     EggRight();
-    LeftPlayer();
-    RightPlayer();
-    StartMatch();
-    CheckGround();
->>>>>>> WinLogic
+ 
+
+    //CheckGround();
+
 
 }
 
@@ -166,115 +163,7 @@ function rotate_shuttle(){
     ctx.drawImage(img, -x_pos,-y_pos, 30,30);
     ctx.restore();
 }
-//  CONTROLS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-function keydownF(ob) {
-
-    if(ob.keyCode==32){     //spacebar
-        jump_left=true;
-    }
-    if(ob.key =="0"){      
-        jump_right=true;
-    }
-
-    if (ob.key == "a") {
-        a_pressed = true;
-    }
-    if (ob.key == "d") {
-        d_pressed = true;
-    }
-    if (ob.key == "s") {
-        s_pressed = true;
-    }
-    if (ob.key == "ArrowLeft") {
-        left_pressed = true;
-    }
-    if (ob.key == "ArrowRight") {
-        right_pressed = true;
-    }
-
-
-    if (ob.key === 'e') {
- 
-        Distance = distance(left_player_x,left_player_y,x_pos,y_pos);
-        jump_left=true;
-        if(Distance<=200 && left_player_x<=x_pos) {
-            flag=0;
-            gr = 0;
-        }
-
-
-    }
-
-    if (ob.key === '4') {
-        Distance = distance(right_player_x,right_player_y,x_pos,y_pos);
-
-        if(Distance<=200 && right_player_x >= x_pos) {
-            flag=1;
-            gr = 0;
-        }
-
-    }
-
-
-    if (ob.key === 'r') {
-        Distance = distance(left_player_x,left_player_y,x_pos,y_pos);
-        if(Distance<=200 && left_player_x<=x_pos) {
-            flag=2;
-            gr = 0;
-        }
-    }
-
-    if (ob.key === '5') {
-         Distance = distance(right_player_x,right_player_y,x_pos,y_pos);
-        if(Distance<=200 && right_player_x>=x_pos) {
-            flag=3;
-            gr = 0;
-        }
-    }
-
-
-    if (ob.key === 'y') {
-        Distance = distance(left_player_x,left_player_y,x_pos,y_pos);
-        if(Distance<=200 && left_player_x<=x_pos) {
-            flag=4;
-            gr = 0;
-        }
-    }
-
-    if (ob.key === '+') {
-       Distance = distance(right_player_x,right_player_y,x_pos,y_pos);
-        
-        if(Distance<=200 && right_player_x>=x_pos) {
-            flag=5;
-            gr = 0;
-        }
-
-
-                        }
-    } // end of keydown function
-
-function keyUpHandler(ob) {
-    if (ob.key == "a" || ob.key == "A") {
-        a_pressed = false;
-    }
-    if (ob.key == "d" || ob.key == "D") {
-        d_pressed = false;
-    }
-
-    if (ob.key == "ArrowLeft") {
-        left_pressed = false;
-    }
-    if (ob.key == "ArrowRight") {
-        right_pressed = false;
-    }
-    if (ob.key == "ArrowDown") {
-        right_pressed = false;
-    }
-
-}
-
-//////////////////////////////////          END OF CONTROLS          ///////////////////////////////////////////////// 
 function EggLeft() {
     var l_a = ctx.drawImage(egg, 0, 10, 70, 70);
     var l_b = ctx.drawImage(egg, 60, 10, 70, 70);
@@ -295,29 +184,24 @@ function ResetPosition() {
 function CheckGround() {
     if (y_pos >= canvas.height - 100) {
 
-        cancelAnimationFrame(animationstart);
+       // cancelAnimationFrame(animationstart);
         ResetPosition();
         if (x_pos <= canvas.width / 2) {
             console.log("Left");
-            alert("Right Win");
+            //alert("Right Win");
         }
 
         else if (x_pos >= canvas.width / 2) {
             console.log("Right");
-            alert("Left Win");
+            //alert("Left Win");
         }
     }
     else {
         animationstart = requestAnimationFrame(draw);
     }
 }
-function StartMatch() {
-    if (s_pressed) {
-        forward();
-        clear_shot_f();
-    }
 
-}
+
 function LeftPlayer() {
     ctx.beginPath();
 
@@ -441,9 +325,7 @@ function drop_shot_b_f() {     //drop shot from back to front (forward)
 function drop_shot_b_b() {     //drop shot from back to front (backward)
     gr += 0.1;
 }
-function leftplayer() {
 
-}
 
 function distance(x1,y1,x2,y2){
     return Math.sqrt( Math.pow((x2-x1), 2) + Math.pow((y2-y1), 2) );
