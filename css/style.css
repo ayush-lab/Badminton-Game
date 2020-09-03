@@ -102,4 +102,14 @@ h3 {
   
   }
   
-  
+  if(flag ==0 || flag ==2 || flag == 4) ctx.drawImage(img, x_pos, y_pos, 30, 30);
+    else rotate_shuttle();
+
+    function rotate_shuttle(){
+   
+        ctx.save();
+        ctx.translate(20, 20);
+        ctx.rotate(180 * (Math.PI/180));
+        ctx.drawImage(img, -x_pos,-y_pos, 30,30);
+        ctx.restore();
+    }

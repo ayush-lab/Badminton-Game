@@ -27,7 +27,7 @@ var rightscore = 0;
 // jump
 
 var r_grr=0, l_grr=0;
-var jump_speed=5;
+var jump_speed=5 ;
 var jump_left =false;
 var jump_right=false;
 
@@ -65,13 +65,17 @@ animationstart = requestAnimationFrame(draw);
 
 function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.drawImage(img, x_pos, y_pos, 30, 30);
+    
+    if(flag ==0 || flag ==2 || flag == 4) ctx.drawImage(img, x_pos, y_pos, 30, 30);
+    else rotate_shuttle();
+
+
     LeftPlayer();
     RightPlayer();
     net_collision();
     Jump_left();
     Jump_right();
-    
+ 
     // if(y_pos > height ){
     //       cancelAnimationFrame(animationstart);
        
@@ -123,6 +127,16 @@ function draw() {
 
 
 
+}
+
+
+function rotate_shuttle(){
+   
+    ctx.save();
+    ctx.translate(40, 40);
+    ctx.rotate(180 * (Math.PI/180));
+    ctx.drawImage(img, -x_pos,-y_pos, 30,30);
+    ctx.restore();
 }
 //  CONTROLS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
