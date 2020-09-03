@@ -55,13 +55,22 @@ rightplayer.src = '../Images/right.png';
 leftplayer_racket.src='../Images/racket.png';
 rightplayer_racket.src='../Images/racket.png';
 
-leftplayer_racket.src = '../Images/racket1.png';
-rightplayer_racket.src = '../Images/racket1.png';
+
+// racket movements
+
+var racket_left=0;
+var racket_left_x=0;
+var racket_left_y=-60;
+var rotate_flag_left=false;
+
+var racket_right=0;
+var racket_right_x=0;
+var racket_right_y=-60;
+var rotate_flag_right=false;
 
 
-var racket_x=0;
-var x_movement=0;
-var racket_y=0;
+
+
 
 
 var isCollide = false;
@@ -71,11 +80,11 @@ imgrightplayer.src = '../Images/right.png'
 egg.src = '../Images/egg.png'
 
 
-document.addEventListener('mousedown', mouseact, false);
+// document.addEventListener('mousedown', mouseact, false);
 
-function mouseact(ob) {
-    alert(ob.clientY - 110);
-}
+// function mouseact(ob) {
+//     alert(ob.clientY - 110);
+// }
 animationstart = requestAnimationFrame(draw);
 
 
@@ -83,73 +92,20 @@ function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     if (flag == 0 || flag == 2 || flag == 4) ctx.drawImage(img, x_pos, y_pos, 30, 30);
     else rotate_shuttle();
+    
     LeftPlayer();
     RightPlayer();
     net_collision();
     Jump_left();
     Jump_right();
-    rotate_racket();
- 
-    // if(y_pos > height ){
-    //       cancelAnimationFrame(animationstart);
-       
-    //  }
-
-
     CheckGround();
     ControlCheck();
     EggLeft();
     EggRight();
+    
+ }
 
 
-  /* For Knowing ShuttlePosition
-    var DisLeft = distance(left_player_x, left_player_y, x_pos, y_pos);
-    var DisRight = distance(right_player_x, right_player_y, x_pos, y_pos);
-    if (DisLeft<=200)
-    {
-        console.log("LEFT  "+DisLeft);
-    }
-    if(DisRight<=200)
-    {
-        console.log("RIGHT  "+DisRight);
-    }*/
-}
-
-function ControlCheck() {
-    if (flag == 0 && s_pressed) {
-        forward();
-        clear_shot_f();
-
-    }
-
-    if (flag == 1) {
-        backward();
-        clear_shot_b();
-    }
-    if (flag == 2) {
-        forward();
-        drop_shot_f_f();
-        console.log("forward ->", gr);
-
-    }
-
-    if (flag == 3) {
-        backward();
-        drop_shot_f_b();
-        console.log("backward->", gr);
-
-    }
-    if (flag == 4) {
-        forward();
-        drop_shot_b_f();
-
-    }
-    if (flag == 5) {
-        backward();
-        drop_shot_b_b();
-
-    }
-}
 
 function ResetPosition() {
     setTimeout(function () {
@@ -166,36 +122,53 @@ function rotate_shuttle() {
     ctx.restore();
 }
 
-function rotate_racket(){
-   
+function rotate_racket_left(){
+    
     ctx.save();
-    //ctx.translate(left_player_x/2,left_player_y/2);
-    ctx.translate(left_player_x,left_player_y);
-    ctx.fillStyle='black';
-    ctx.arc(0,0,1000,0, Math.PI*2);
-   
-    ctx.rotate(racket_x * Math.PI/180);
-    ctx.drawImage(leftplayer_racket,30,-60, 120, 120);
+    ctx.translate(left_player_x-60,left_player_y);
+
+    if(racket_left_x<50)  {
+    ctx.rotate(racket_left * Math.PI/180);
+    ctx.drawImage(leftplayer_racket,racket_left_x,racket_left_y, 120, 120);
+    
+
+                      }
+
+    else rotate_flag_left=false;
+    racket_left+=1;
+    racket_left_x+=2;
+    racket_left_y-=2; 
     ctx.restore();
-    racket_x+=1;
-    x_movement+=0.1;
+
+
+  
 }
 
 
-function EggLeft() {
-    var l_a = ctx.drawImage(egg, 60, 10, 70, 70);
-    var l_b = ctx.drawImage(egg, 120, 10, 70, 70);
-    var l_c = ctx.drawImage(egg, 180, 10, 70, 70);
-    var l_d = ctx.drawImage(egg, 240, 10, 70, 70);
-    var l_e = ctx.drawImage(egg, 300, 10, 70, 70);
+function rotate_racket_right(){
+    
+    ctx.save();
+    ctx.translate(right_player_x-60,right_player_y);
+
+    if(racket_right_x<50)  {
+    ctx.rotate(racket_right * Math.PI/180);
+    ctx.drawImage(rightplayer_racket,racket_right_x,racket_right_y, 120, 120);
+    
+
+                      }
+
+    else rotate_flag_right=false;
+
+    racket_right+=1;
+    racket_right_x+=2;
+    racket_right_y-=2; 
+    ctx.restore();
+
+
+  
 }
-function EggRight() {
-    var r_a = ctx.drawImage(egg, 938, 10, 70, 70);
-    var r_b = ctx.drawImage(egg, 998, 10, 70, 70);
-    var r_c = ctx.drawImage(egg, 1058, 10, 70, 70);
-    var r_d = ctx.drawImage(egg, 1118, 10, 70, 70);
-    var r_e = ctx.drawImage(egg, 1178, 10, 70, 70);
-}
+
+
 
 function CheckGround() {
     if (x_pos <= 100 || x_pos >= 1300) {
@@ -226,79 +199,8 @@ function CheckGround() {
 }
 
 
-function LeftPlayer() {
-    ctx.beginPath();
-    ctx.drawImage(leftplayer_racket, left_player_x, left_player_y - 60, 120, 120);
-    ctx.drawImage(leftplayer, left_player_x, left_player_y, 120, 120);
-    ctx.drawImage(imgleftplayer, left_player_x, left_player_y, 120, 120);
-    ctx.closePath();
-    if (d_pressed && left_player_x < 580 && s_pressed) {
-        left_player_x += 10;
-    }
-    if (a_pressed && left_player_x >= 100 && s_pressed) {
-        left_player_x += -10;
-    }
-
-}
-function RightPlayer() {
-    ctx.beginPath();
-    ctx.drawImage(rightplayer_racket, right_player_x, right_player_y - 60, 120, 120);
-    ctx.drawImage(rightplayer, right_player_x, right_player_y, 120, 120);
-    ctx.drawImage(imgrightplayer, right_player_x, right_player_y, 120, 120);
-    ctx.closePath();
-    if (left_pressed && right_player_x > 750) {
-        right_player_x += -10;
-    }
-    if (right_pressed && right_player_x <= 1100) {
-        right_player_x += 10;
-    }
-
-}
-function Collide() {
-    location.reload();
-}
-
-function Jump_left() {
-    if (jump_left && s_pressed) {
-
-        ctx.beginPath();
-        ctx.drawImage(leftplayer, left_player_x, left_player_y, 120, 120);
-        ctx.closePath();
-
-        left_player_y -= jump_speed;
-        left_player_y += l_grr;
-        l_grr += 0.1;
-
-        if (left_player_y > 600) {
-            left_player_y = 600;
-            l_grr = 0;
-            //jump_speed=0;
-            jump_left = false;
-        }
-    }
-}
-
-
-function Jump_right() {
-    if (jump_right) {
-
-        ctx.beginPath();
-        ctx.drawImage(rightplayer, right_player_x, right_player_y, 120, 120);
-        ctx.closePath();
-
-        right_player_y -= jump_speed;
-        right_player_y += r_grr;
-        r_grr += 0.1;
-
-        if (right_player_y > 600) {
-            right_player_y = 600;
-            r_grr = 0;
-            jump_right = false;
-        }
-    }
-}
-
-
+/////////////////////////////////////////////////////
+//  shuttle movements 
 
 function forward() {
     x_pos += h_vel;
@@ -344,13 +246,3 @@ function drop_shot_b_b() {     //drop shot from back to front (backward)
 }
 
 
-function distance(x1, y1, x2, y2) {
-    return Math.sqrt(Math.pow((x2 - x1), 2) + Math.pow((y2 - y1), 2));
-
-}
-
-function net_collision() {
-    if (y_pos >= 530 && x_pos > 690 && x_pos < 720) { //690 720
-        location.reload();
-    }
-}
