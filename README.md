@@ -24,7 +24,7 @@ Each player has 3 different types of shots.
 ---
 #### LEFT PLAYER
 - ``` a and d for LEFT AND RIGHT MOVEMENT respectively``` 
-- ``` w for JUMP```  
+- ``` space for JUMP```  
 - ``` q for BACK-TO-BACK CLEAR SHOT```  
 - ``` e for FRONT-TO-FRONT DROP SHOT```  
 - ``` t for INTERMEDIATE SHOT (MEDIUM POWER)```  
