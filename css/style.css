@@ -18,6 +18,20 @@ body {
     background: linear-gradient(transparent,#3b2476);
     border-radius: 6px;
 }
+
+.main_heading{
+    margin-bottom:50px;
+    font-size:50px;
+}
+
+.list{
+    list-style-type: bullet;
+    font-size:30px;
+    margin-left:300px;
+}
+.list li{
+    margin-bottom:10px;
+}
 ol {
     font-family: 'Bree Serif', serif;
     font-size: 1.3em;
@@ -56,8 +70,7 @@ h3 {
    justify-content: center;
    font-size: 1.5rem;
 }
-.ul_flex {
-}
+
 .btn {
     display: inline-block;
     padding: 10px 30px;
