@@ -43,9 +43,9 @@ var whistle = new Audio('/assests/whistle.mp3');
 var hit = new Audio('/assests/hit.mp3');
 ///////////////////////////////////////////////////////////////
 var img = new Image();
-var imgleftplayer =leftplayer= new Image();
-var imgrightplayer=rightplayer = new Image();
-var egg = new Image();var img = new Image();
+var imgleftplayer = leftplayer = new Image();
+var imgrightplayer = rightplayer = new Image();
+var egg = new Image(); var img = new Image();
 var leftplayer_racket = new Image();
 var rightplayer_racket = new Image();
 ///////////////////////////////////////////////////////////////
@@ -145,7 +145,7 @@ function rotate_racket_right() {
     ctx.translate(right_player_x - 60, right_player_y);
     if (racket_right_x < 50) {
         ctx.rotate(racket_right * Math.PI / 180);
-        ctx.drawImage(rightplayer_racket, racket_right_x+50, racket_right_y, 120, 120);
+        ctx.drawImage(rightplayer_racket, racket_right_x + 50, racket_right_y, 120, 120);
     }
     else rotate_flag_right = false;
     racket_right += 1;
@@ -167,14 +167,25 @@ function CheckGround() {
         if (x_pos <= canvas.width / 2) {
             console.log("Left");
             msgShownFN("Right Player Point++");
+            if (localStorage.getItem("RS")!=null)
+            {
+                rightscore=localStorage.getItem("RS");
+            }
             rightscore++;
-
+            console.log("Right Score : "+rightscore);
+            localStorage.setItem("RS", rightscore);
         }
 
-        else if (x_pos >= canvas.width / 2) {
+         if (x_pos >= canvas.width / 2) {
             console.log("Right");
             msgShownFN("Left Player Point++");
+            if (localStorage.getItem("LS")!=null)
+            {
+                leftscore=localStorage.getItem("LS");
+            }
             leftscore++;
+            console.log("Left Score : "+leftscore);
+            localStorage.setItem("LS", leftscore);
         }
     }
     else {
@@ -184,20 +195,20 @@ function CheckGround() {
 ///////////////////////////////////////////////////////////////
 function msgShownFN(str) {
     ctx.save();
-    ctx.translate(-canvas.width/2,-100);
+    ctx.translate(-canvas.width / 2, -100);
     ctx.beginPath();
-    ctx.rect( canvas.width/2, canvas.height/2+60, canvas.width, 120);
-    ctx.fillStyle='#191970';
+    ctx.rect(canvas.width / 2, canvas.height / 2 + 60, canvas.width, 120);
+    ctx.fillStyle = '#191970';
     ctx.fill();
     ctx.restore();
     ctx.font = "120px Bree Serif";
     ctx.fillStyle = "white";
     ctx.textAlign = "center";
-    ctx.fillText(str, canvas.width/2, canvas.height/2+50);
+    ctx.fillText(str, canvas.width / 2, canvas.height / 2 + 50);
     whistle.play();
     setTimeout(function () {
-        ctx.fill("", -canvas.width/2, -canvas.height/2);
-        msgShown=false;
+        ctx.fill("", -canvas.width / 2, -canvas.height / 2);
+        msgShown = false;
     }, 2000)
 }
 ///////////////////////////////////////////////////////////////
@@ -223,7 +234,7 @@ function RightPlayer() {
     ctx.beginPath();
 
     if (rotate_flag_right) rotate_racket_right();
-    else ctx.drawImage(rightplayer_racket, right_player_x +10, right_player_y - 60, 120, 120);
+    else ctx.drawImage(rightplayer_racket, right_player_x + 10, right_player_y - 60, 120, 120);
 
     ctx.drawImage(rightplayer, right_player_x, right_player_y, 120, 120);
     ctx.drawImage(imgrightplayer, right_player_x, right_player_y, 120, 120);
@@ -283,7 +294,7 @@ function distance(x1, y1, x2, y2) {
 }
 ///////////////////////////////////////////////////////////////
 function net_collision() {
-    if (y_pos >= 530 && x_pos > 690 && x_pos < 720) { 
+    if (y_pos >= 530 && x_pos > 690 && x_pos < 720) {
         msgShownFN("Net ");
         location.reload();
     }
