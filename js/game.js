@@ -52,8 +52,6 @@ var leftplayer_racket = new Image();
 var rightplayer_racket = new Image();
 ///////////////////////////////////////////////////////////////
 img.src = '../Images/shuttle.svg';
-leftplayer.src = '../Images/left.png';
-rightplayer.src = '../Images/right.png';
 leftplayer_racket.src = '../Images/racket-left.png';
 rightplayer_racket.src = '../Images/racket-right.png';
 img.src = '../Images/shuttle.svg';
@@ -61,7 +59,7 @@ imgleftplayer.src = '../Images/left.png';
 imgrightplayer.src = '../Images/right.png';
 egg.src = '../Images/egg.png';
 no_egg.src='../Images/blank.png';
-///////////////////////////////////////////////////////////////
+////////////////////////////console.log(Arena);////////////////
 var Arena = sessionStorage.getItem("Arena");
 if (Arena == "Arena1") {
     canvas.style.backgroundImage = "url('/Images/back1.png')"
@@ -72,27 +70,44 @@ else if (Arena == "Arena2") {
 else if (Arena == "Arena3") {
     canvas.style.backgroundImage = "url('/Images/back3.png')"
 }
-console.log(Arena);
+////////////////////////////console.log(Bird);////////////////
 var Bird = sessionStorage.getItem("Bird");
 if (Bird == "Bird_blue") {
     imgleftplayer.src = '../Images/left.png';
 }
-if (Bird == "Bird_she") {
+else if (Bird == "Bird_she") {
     imgleftplayer.src = '../Images/left_she.png';
 }
-if (Bird == "Bird_red") {
+else if (Bird == "Bird_red") {
     imgleftplayer.src = '../Images/left_red.png';
 }
-if (Bird == "Bird_black") {
+else if (Bird == "Bird_black") {
     imgleftplayer.src = '../Images/left_black.png';
 }
-if (Bird == "Bird_yellow") {
+else if (Bird == "Bird_yellow") {
     imgleftplayer.src = '../Images/left_yellow.png';
 }
-if (Bird == "Bird_white") {
+else if (Bird == "Bird_white") {
     imgleftplayer.src = '../Images/left_white.png';
 }
-console.log(Bird);
+////////////////////////////console.log(Pig);////////////////
+var Pig =sessionStorage.getItem("Pig");
+if (Pig=="pig_green")
+{
+    imgrightplayer.src='../Images/right.png';
+}
+else if (Pig=="pig_she")
+{
+    imgrightplayer.src='../Images/right_she.png';
+}
+else if (Pig=="pig_hitler")
+{
+    imgrightplayer.src='../Images/right_old.png';
+}
+else if (Pig=="pig_zombie")
+{
+    imgrightplayer.src='../Images/right_zombie.png';
+}
 ///////////////////////////////////////////////////////////////
 animationstart = requestAnimationFrame(draw);
 ///////////////////////////////////////////////////////////////
@@ -205,7 +220,7 @@ function msgShownFN(str) {
     ctx.fillStyle = '#191970';
     ctx.fill();
     ctx.restore();
-    ctx.font = "120px Bree Serif";
+    ctx.font = "70px Bree Serif";
     ctx.fillStyle = "white";
     ctx.textAlign = "center";
     ctx.fillText(str, canvas.width / 2, canvas.height / 2 + 50);
@@ -416,14 +431,14 @@ function drop_shot_b_b() {     //drop shot from back to front (backward)
 
 function win_logic(){
     if(rightscore ==5){
-        msgShownFN("Pig has won the game!");
+        msgShownFN("Bad Piggy has won the game!");
         localStorage.setItem("RS", 0);
         localStorage.setItem("LS", 0);
 
     }
 
     else if(leftscore ==5){
-        msgShownFN("Bird has won the game!"); 
+        msgShownFN("Angry Bird has won the game!"); 
         localStorage.setItem("RS", 0);
         localStorage.setItem("LS", 0);
     }

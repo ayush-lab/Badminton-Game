@@ -1,7 +1,9 @@
 var arena;
 var bird;
+var pig;
 var arenaChoose = false;
 var birdChoose = false;
+var pigChoose = false;
 function Arena(str) {
     if (str == "Arena1") {
         arena = str;
@@ -42,9 +44,34 @@ function Birds(strn) {
         bird = strn;
         birdChoose = true;
     }
-    if (arenaChoose && birdChoose) {
-        sessionStorage.setItem("Arena", arena);
-        sessionStorage.setItem("Bird", bird);
-        window.location = "/game.html";
+    window.location = "#pigs";
+}
+function Pigs(strl) {
+    if (strl== "pig_green")
+    {
+        pig =strl;
+        pigChoose=true;
     }
+    if (strl== "pig_she")
+    {
+        pig =strl;
+        pigChoose=true;
+    }
+    if (strl== "pig_hitler")
+    {
+        pig =strl;
+        pigChoose=true;
+    }
+    if (strl== "pig_zombie")
+    {
+        pig =strl;
+        pigChoose=true;
+    }
+
+if (arenaChoose && birdChoose && pigChoose) {
+    sessionStorage.setItem("Arena", arena);
+    sessionStorage.setItem("Bird", bird);
+    sessionStorage.setItem("Pig", pig);
+    window.location = "/game.html";
+}
 }

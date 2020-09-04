@@ -25,6 +25,10 @@ body {
     position: relative;
     height: 100vh;
 }
+#pigs {
+    position: relative;
+    height: 100vh;
+}
 .flex ,.flex-bird{
     display: flex;
     margin: 2rem;
@@ -35,11 +39,28 @@ body {
     justify-content: center;
     background-size: auto;  
 }
+.flex-pig {
+    display: flex;
+    margin: 2rem;
+    align-content: center;
+    position: absolute;
+    top: 30%;
+    left: 25%;
+    justify-content: center;
+    background-size: auto;  
+}
 .card {
     background-size: auto;
     
 }
 .flex-bird .card img {
+    width: 200px;
+    height: 200px;
+    z-index: -1;
+    padding: 1rem;
+    border-radius: 30px;
+}
+.flex-pig .card img {
     width: 200px;
     height: 200px;
     z-index: -1;
