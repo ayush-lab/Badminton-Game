@@ -35,6 +35,11 @@ Each player has 3 different types of shots.
 - ``` arrow up key for JUMP```  
 - ``` 4 for BACK-TO-BACK CLEAR SHOT```  
 - ``` 5 for FRONT-TO-FRONT DROP SHOT```  
-- ``` + for INTERMEDIATE SHOT (MEDIUM POWER)```  
+- ``` + for INTERMEDIATE SHOT (MEDIUM POWER)```      
+
+   
+   
+![alt text](https://raw.githubusercontent.com/ayush-lab/Badminton-Game/master/Images/game_ss.png)
+
 
 
