@@ -143,7 +143,7 @@ function rotate_racket_right() {
     ctx.translate(right_player_x - 60, right_player_y);
     if (racket_right_x < 50) {
         ctx.rotate(racket_right * Math.PI / 180);
-        ctx.drawImage(rightplayer_racket, racket_right_x, racket_right_y, 120, 120);
+        ctx.drawImage(rightplayer_racket, racket_right_x+50, racket_right_y, 120, 120);
     }
     else rotate_flag_right = false;
     racket_right += 1;
@@ -181,8 +181,15 @@ function CheckGround() {
 }
 ///////////////////////////////////////////////////////////////
 function msgShownFN(str) {
+    ctx.save();
+    ctx.translate(-canvas.width/2,-100);
+    ctx.beginPath();
+    ctx.rect( canvas.width/2, canvas.height/2+60, canvas.width, 120);
+    ctx.fillStyle='#8A2387';
+    ctx.fill();
+    ctx.restore();
     ctx.font = "120px Bree Serif";
-    ctx.fillStyle = "White";
+    ctx.fillStyle = "white";
     ctx.textAlign = "center";
     ctx.fillText(str, canvas.width/2, canvas.height/2+50);
     setTimeout(function () {
@@ -213,7 +220,7 @@ function RightPlayer() {
     ctx.beginPath();
 
     if (rotate_flag_right) rotate_racket_right();
-    else ctx.drawImage(rightplayer_racket, right_player_x - 10, right_player_y - 60, 120, 120);
+    else ctx.drawImage(rightplayer_racket, right_player_x +10, right_player_y - 60, 120, 120);
 
     ctx.drawImage(rightplayer, right_player_x, right_player_y, 120, 120);
     ctx.drawImage(imgrightplayer, right_player_x, right_player_y, 120, 120);
