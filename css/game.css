@@ -1,5 +1,10 @@
 body {
-    background-color: #35363A;
+    margin: 0%;
+    color: white;
+    background-size: cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-image: url("https://html5.gamedistribution.com/ec111b02d2554b599732a2d0a96419e5/media/graphics/game/bg/chara-select-bg.png");
 }
 
 .container{

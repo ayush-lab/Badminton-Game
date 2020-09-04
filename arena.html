@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/arena.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <audio autoplay loop>
+        <source src="/assests/introsong.mp3" type="audio/mpeg">
+    </audio>
+    <section id="arena">
+        <span class="logoname">Choose an Arena</span>
+        <div class="flex">
+            <div class="card" onclick="Arena('Arena1')">
+                <img src="/images/back1.png" alt="img">
+                <p>Arena 1</p>
+            </div>
+            <div class="card" onclick="Arena('Arena2')">
+                <img src="/images/back2.png" alt="img">
+                <p>Arena 2</p>
+            </div>
+            <div class="card" onclick="Arena('Arena3')">
+                <img src="/images/back1.png" alt="img">
+                <p>Arena 3</p>
+            </div>
+        </div>
+    </section>
+    <section id="birds">
+        <span class="logoname">Choose a warrior</span>
+        <div class="flex-bird">
+            <div class="card" onclick="Birds('Bird_blue')">
+                <img src="/images/left.png" alt="img">
+                <p>Bluely</p>
+            </div>
+            <div class="card" onclick="Birds('Bird_she')">
+                <img src="/images/left_she.png" alt="img">
+                <p>She</p>
+            </div>
+            <div class="card" onclick="Birds('Bird_red')">
+                <img src="/images/left_red.png" alt="img">
+                <p>Reddy</p>
+            </div>
+            <div class="card" onclick="Birds('Bird_black')">
+                <img src="/images/left_black.png" alt="img">
+                <p>Blacky</p>
+            </div>
+            <div class="card" onclick="Birds('Bird_yellow')">
+                <img src="/images/left_yellow.png" alt="img">
+                <p>Yeely</p>
+            </div>
+            <div class="card" onclick="Birds('Bird_white')">
+                <img src="/images/left_white.png" alt="img">
+                <p>Whitey</p>
+            </div>
+        </div>
+    </section>
+        <script src="/js/arena.js"></script>
+</body>
+
+</html>

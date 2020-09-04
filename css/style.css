@@ -10,7 +10,13 @@ body {
     background-repeat: no-repeat;
     background-image: url("https://html5.gamedistribution.com/ec111b02d2554b599732a2d0a96419e5/media/graphics/game/bg/chara-select-bg.png");
 }
-
+::-webkit-scrollbar {
+    width: 12px;
+}
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(transparent,#117bfb);
+    border-radius: 6px;
+}
 ol {
     font-family: 'Bree Serif', serif;
     font-size: 1.3em;
@@ -18,7 +24,6 @@ ol {
 }
 
 ul {
-    font-family: 'Dosis', sans-serif;
     text-align: center;
     text-align: justify;
     text-justify: inter-word;
@@ -45,7 +50,13 @@ h3 {
     font-size: 1.5em;
     text-align: center;
 }
-
+#flex  {
+   display: flex;
+   justify-content: center;
+   font-size: 1.5rem;
+}
+.ul_flex {
+}
 .btn {
     display: inline-block;
     padding: 10px 30px;

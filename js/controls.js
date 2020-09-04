@@ -3,7 +3,9 @@ document.addEventListener("keyup", keyUpHandler, false);
 
 function keydownF(ob) {
 
-    if (ob.keyCode == "032") {
+
+
+    if (ob.key == "w") {
         jump_left = true;
     }
     if (ob.key == "ArrowUp") {
@@ -29,11 +31,14 @@ function keydownF(ob) {
 
 
     if (ob.key === 'q') {
-        console.log("Pressed key Q");
-        jump_left = true;
-  //      Distance = distance(left_player_x, left_player_y, x_pos, y_pos);
+        racket_left=0;
+        racket_left_x=0;
+        racket_left_y=-60;
+        rotate_flag_left=true;
+
+        Distance = distance(left_player_x, left_player_y, x_pos, y_pos);
+    
         if (Distance <= 200 && x_pos<=left_player_x+120 ) {
-   //        console.log("Recieve key Q");
             flag = 0;
             gr = 0;
         }
@@ -41,12 +46,14 @@ function keydownF(ob) {
 
     }
 
-    if (ob.key === '4') {
-     //   console.log("Pressed key 4");
-        jump_right = true;  
+    if (ob.key === '4') { 
+        racket_right=0;
+        racket_right_x=0;
+        racket_right_y=-60;
+        rotate_flag_right=true;
+
         Distance = distance(right_player_x, right_player_y, x_pos, y_pos);
         if (Distance <= 200 && x_pos<=right_player_x+120) {
-   //        console.log("Recieve key 4");
             flag = 1;
             gr = 0;
         }
@@ -55,6 +62,10 @@ function keydownF(ob) {
 
 
     if (ob.key === 'e') {
+        racket_left=0;
+        racket_left_x=0;
+        racket_left_y=-60;
+        rotate_flag_left=true;
         Distance = distance(left_player_x, left_player_y, x_pos, y_pos);
         if (Distance <= 200 && left_player_x <= x_pos) {
             flag = 2;
@@ -63,6 +74,10 @@ function keydownF(ob) {
     }
 
     if (ob.key === '5') {
+        racket_right=0;
+        racket_right_x=0;
+        racket_right_y=-60;
+        rotate_flag_right=true;
         Distance = distance(right_player_x, right_player_y, x_pos, y_pos);
         if (Distance <= 200 && right_player_x >= x_pos) {
             flag = 3;
@@ -71,7 +86,11 @@ function keydownF(ob) {
     }
 
 
-    if (ob.key === 'y') {
+    if (ob.key === 't') {
+        racket_left=0;
+        racket_left_x=0;
+        racket_left_y=-60;
+        rotate_flag_left=true;
         Distance = distance(left_player_x, left_player_y, x_pos, y_pos);
         if (Distance <= 200 && left_player_x <= x_pos) {
             flag = 4;
@@ -80,6 +99,10 @@ function keydownF(ob) {
     }
 
     if (ob.key === '+') {
+        racket_right=0;
+        racket_right_x=0;
+        racket_right_y=-60;
+        rotate_flag_right=true;
         Distance = distance(right_player_x, right_player_y, x_pos, y_pos);
 
         if (Distance <= 200 && right_player_x >= x_pos) {

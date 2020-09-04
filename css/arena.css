@@ -1,0 +1,76 @@
+@import "https://fonts.googleapis.com/css?family=Bree+Serif&display=swap";
+@import "https://fonts.googleapis.com/css2?family=Dosis:wght@500&display=swap";
+
+
+body {
+    margin: 0;
+    color: white;
+    background-size: cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-image: url("https://html5.gamedistribution.com/ec111b02d2554b599732a2d0a96419e5/media/graphics/game/bg/chara-select-bg.png");
+}
+::-webkit-scrollbar {
+    width: 12px;
+}
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(transparent,#117bfb);
+    border-radius: 6px;
+}
+#arena {
+    height: 100vh;
+}
+#birds {
+    position: relative;
+    height: 100vh;
+}
+.flex ,.flex-bird{
+    display: flex;
+    margin: 2rem;
+    align-content: center;
+    position: absolute;
+    top: 30%;
+    left: 10%;
+    justify-content: center;
+    background-size: auto;  
+}
+.card {
+    background-size: auto;
+    
+}
+.flex-bird .card img {
+    width: 200px;
+    height: 200px;
+    z-index: -1;
+    padding: 1rem;
+    border-radius: 30px;
+}
+.card:hover {
+    transform: scale(1.3);
+}
+
+.card img {
+    width: 450px;
+    height: 300px;
+    z-index: -1;
+    padding: 1rem;
+    border-radius: 30px;
+}
+.card p {
+    color: white;
+    font-family: 'Bree Serif';
+    font-weight: bold;
+    text-align: center;
+    font-size: 3rem;
+}
+.logoname {
+    position:absolute;
+    color:white;
+    top:30px;
+    left:30vw;
+    font-size: 6em;
+    font-family: 'Bree Serif', bold;
+    font-weight: bold;
+    text-align: center;
+}
+
