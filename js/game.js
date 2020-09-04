@@ -45,7 +45,9 @@ var hit = new Audio('/assests/hit.mp3');
 var img = new Image();
 var imgleftplayer = leftplayer = new Image();
 var imgrightplayer = rightplayer = new Image();
-var egg = new Image(); var img = new Image();
+var egg = new Image(); 
+var no_egg =new Image();
+var img = new Image();
 var leftplayer_racket = new Image();
 var rightplayer_racket = new Image();
 ///////////////////////////////////////////////////////////////
@@ -56,8 +58,9 @@ leftplayer_racket.src = '../Images/racket-left.png';
 rightplayer_racket.src = '../Images/racket-right.png';
 img.src = '../Images/shuttle.svg';
 imgleftplayer.src = '../Images/left.png';
-imgrightplayer.src = '../Images/right.png'
-egg.src = '../Images/egg.png'
+imgrightplayer.src = '../Images/right.png';
+egg.src = '../Images/egg.png';
+no_egg.src='../Images/blank.png';
 ///////////////////////////////////////////////////////////////
 var Arena = sessionStorage.getItem("Arena");
 if (Arena == "Arena1") {
@@ -107,6 +110,7 @@ function draw() {
     ControlCheck();
     EggLeft();
     EggRight();
+    win_logic()
 
 }
 ///////////////////////////////////////////////////////////////
@@ -166,7 +170,7 @@ function CheckGround() {
         ResetPosition();
         if (x_pos <= canvas.width / 2) {
             console.log("Left");
-            msgShownFN("Right Player Point++");
+            msgShownFN("Right Player Point ++");
             if (localStorage.getItem("RS")!=null)
             {
                 rightscore=localStorage.getItem("RS");
@@ -178,7 +182,7 @@ function CheckGround() {
 
          if (x_pos >= canvas.width / 2) {
             console.log("Right");
-            msgShownFN("Left Player Point++");
+            msgShownFN("Left Player Point ++");
             if (localStorage.getItem("LS")!=null)
             {
                 leftscore=localStorage.getItem("LS");
@@ -301,19 +305,37 @@ function net_collision() {
 }
 ///////////////////////////////////////////////////////////////
 function EggLeft() {
-    var l_a = ctx.drawImage(egg, 60, 10, 70, 70);
-    var l_b = ctx.drawImage(egg, 120, 10, 70, 70);
-    var l_c = ctx.drawImage(egg, 180, 10, 70, 70);
-    var l_d = ctx.drawImage(egg, 240, 10, 70, 70);
-    var l_e = ctx.drawImage(egg, 300, 10, 70, 70);
+    if(localStorage.getItem("RS") >=5)ctx.drawImage(no_egg, 60, 10, 70, 70);
+    else ctx.drawImage(egg, 60, 10, 70, 70);
+
+    if(localStorage.getItem("RS") >=4)ctx.drawImage(no_egg, 120, 10, 70, 70);
+    else ctx.drawImage(egg, 120, 10, 70, 70);
+
+    if(localStorage.getItem("RS") >=3)ctx.drawImage(no_egg, 180, 10, 70, 70);
+    else ctx.drawImage(egg, 180, 10, 70, 70);
+    
+    if(localStorage.getItem("RS") >=2)ctx.drawImage(no_egg, 240, 10, 70, 70);
+    else ctx.drawImage(egg, 240, 10, 70, 70);
+  
+    if(localStorage.getItem("RS") >=1)ctx.drawImage(no_egg, 300, 10, 70, 70);
+    else ctx.drawImage(egg, 300, 10, 70, 70);
 }
 ///////////////////////////////////////////////////////////////
 function EggRight() {
-    var r_a = ctx.drawImage(egg, 938, 10, 70, 70);
-    var r_b = ctx.drawImage(egg, 998, 10, 70, 70);
-    var r_c = ctx.drawImage(egg, 1058, 10, 70, 70);
-    var r_d = ctx.drawImage(egg, 1118, 10, 70, 70);
-    var r_e = ctx.drawImage(egg, 1178, 10, 70, 70);
+    if(localStorage.getItem("LS") >=5)ctx.drawImage(no_egg, 938, 10, 70, 70);
+    else ctx.drawImage(egg, 938, 10, 70, 70);
+
+    if(localStorage.getItem("LS") >=4)ctx.drawImage(no_egg, 998, 10, 70, 70);
+    else ctx.drawImage(egg, 998, 10, 70, 70);
+    
+    if(localStorage.getItem("LS") >=3)ctx.drawImage(no_egg, 1058, 10, 70, 70);
+    else ctx.drawImage(egg, 1058, 10, 70, 70);
+    
+    if(localStorage.getItem("LS") >=2)ctx.drawImage(no_egg, 1118, 10, 70, 70);
+    else ctx.drawImage(egg, 1118, 10, 70, 70);
+
+    if(localStorage.getItem("LS") >=1)ctx.drawImage(no_egg, 1178, 10, 70, 70);
+    else ctx.drawImage(egg, 1178, 10, 70, 70);
 }
 ///////////////////////////////////////////////////////////////
 function ControlCheck() {
@@ -389,4 +411,20 @@ function drop_shot_b_f() {     //drop shot from back to front (forward)
 ///////////////////////////////////////////////////////////////
 function drop_shot_b_b() {     //drop shot from back to front (backward)
     gr += 0.1;
+}
+
+
+function win_logic(){
+    if(rightscore ==5){
+        msgShownFN("Pig has won the game!");
+        localStorage.setItem("RS", 0);
+        localStorage.setItem("LS", 0);
+
+    }
+
+    else if(leftscore ==5){
+        msgShownFN("Bird has won the game!"); 
+        localStorage.setItem("RS", 0);
+        localStorage.setItem("LS", 0);
+    }
 }
