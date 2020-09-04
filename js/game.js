@@ -170,7 +170,7 @@ function CheckGround() {
         ResetPosition();
         if (x_pos <= canvas.width / 2) {
             console.log("Left");
-            msgShownFN("Right Player Point ++");
+            msgShownFN("Point");
             if (localStorage.getItem("RS")!=null)
             {
                 rightscore=localStorage.getItem("RS");
@@ -182,7 +182,7 @@ function CheckGround() {
 
          if (x_pos >= canvas.width / 2) {
             console.log("Right");
-            msgShownFN("Left Player Point ++");
+            msgShownFN("Point");
             if (localStorage.getItem("LS")!=null)
             {
                 leftscore=localStorage.getItem("LS");

@@ -12,9 +12,10 @@ body {
 }
 ::-webkit-scrollbar {
     width: 12px;
+    background-color: #160824;
 }
 ::-webkit-scrollbar-thumb {
-    background: linear-gradient(transparent,#117bfb);
+    background: linear-gradient(transparent,#3b2476);
     border-radius: 6px;
 }
 #arena {
