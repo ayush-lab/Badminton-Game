@@ -38,7 +38,9 @@ var jump_left = false;
 var jump_right = false;
 var rotate_flag_right = false;
 var rotate_flag_left = false;
-var isCollide = false;
+///////////////////////////////////////////////////////////////
+var whistle = new Audio('/assests/whistle.mp3');
+var hit = new Audio('/assests/hit.mp3');
 ///////////////////////////////////////////////////////////////
 var img = new Image();
 var imgleftplayer =leftplayer= new Image();
@@ -185,13 +187,14 @@ function msgShownFN(str) {
     ctx.translate(-canvas.width/2,-100);
     ctx.beginPath();
     ctx.rect( canvas.width/2, canvas.height/2+60, canvas.width, 120);
-    ctx.fillStyle='#8A2387';
+    ctx.fillStyle='#191970';
     ctx.fill();
     ctx.restore();
     ctx.font = "120px Bree Serif";
     ctx.fillStyle = "white";
     ctx.textAlign = "center";
     ctx.fillText(str, canvas.width/2, canvas.height/2+50);
+    whistle.play();
     setTimeout(function () {
         ctx.fill("", -canvas.width/2, -canvas.height/2);
         msgShown=false;
@@ -232,10 +235,6 @@ function RightPlayer() {
         right_player_x += 10;
     }
 
-}
-///////////////////////////////////////////////////////////////
-function Collide() {
-    location.reload();
 }
 ///////////////////////////////////////////////////////////////
 function Jump_left() {
