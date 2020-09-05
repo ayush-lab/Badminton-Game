@@ -8,8 +8,8 @@ var Distance;
 var x_pos = 180;
 var y_pos = height - 1;
 var gr = 0;
-var angle = (45 * (Math.PI) / 180);
-var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitCancelAnimationFrame;
+//var angle = (45 * (Math.PI) / 180);
+var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame ;
 var cancelAnimationFrame = window.cancelAnimationFrame || window.mozCancelAnimationFrame;
 var animationstart;
 var left_player_x = 120;
@@ -18,6 +18,7 @@ var left_player_y = 600;
 var right_player_y = 600;
 var leftscore = 0;
 var rightscore = 0;
+//Jump
 var r_grr = 0, l_grr = 0;
 var jump_speed = 5;
 var h_vel = 5.5;
@@ -122,6 +123,7 @@ animationstart = requestAnimationFrame(draw);
 ///////////////////////////////////////////////////////////////
 function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+    //Shuttle Dir'n
     if (flag == 0 || flag == 2 || flag == 4) ctx.drawImage(img, x_pos, y_pos, 30, 30);
     else rotate_shuttle();
 
@@ -146,7 +148,7 @@ function ResetPosition() {
 
 }
 ///////////////////////////////////////////////////////////////
-//Rotate Shuffle Logic
+//Rotate Shuttle Logic
 function rotate_shuttle() {
     ctx.save();
     ctx.translate(40, 40);
@@ -405,14 +407,14 @@ function ControlCheck() {
     if (flag == 2) {
         forward();
         drop_shot_f_f();
-        console.log("forward ->", gr);
+        //console.log("forward ->", gr);
 
     }
 
     if (flag == 3) {
         backward();
         drop_shot_f_b();
-        console.log("backward->", gr);
+        //console.log("backward->", gr);
 
     }
     if (flag == 4) {
@@ -470,7 +472,6 @@ function drop_shot_b_b() {     //drop shot from back to front (backward)
 //Fn for Checking win Logic
 function win_logic(){
     if(rightscore ==5){
-        finish.play();
         FinishFN("Pig");
         localStorage.setItem("RS", 0);
         localStorage.setItem("LS", 0);
@@ -478,7 +479,6 @@ function win_logic(){
     }
 
     else if(leftscore ==5){
-        finish.play();
         FinishFN("Bird"); 
         localStorage.setItem("RS", 0);
         localStorage.setItem("LS", 0);
