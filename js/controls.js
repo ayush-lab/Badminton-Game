@@ -3,8 +3,6 @@ document.addEventListener("keyup", keyUpHandler, false);
 
 function keydownF(ob) {
 
-
-
     if (ob.key == "w") {
         jump_left = true;
     }

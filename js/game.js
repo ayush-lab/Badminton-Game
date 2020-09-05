@@ -1,5 +1,6 @@
 var canvas = document.getElementById('game');
 //////////////////////////////////////////////////////////////
+//All Postions Variable 
 var ctx = canvas.getContext('2d');
 var height = canvas.height / 1.2;
 var flag = 0;
@@ -7,8 +8,8 @@ var Distance;
 var x_pos = 180;
 var y_pos = height - 1;
 var gr = 0;
-var angle = (45 * (Math.PI) / 180);
-var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitCancelAnimationFrame;
+//var angle = (45 * (Math.PI) / 180);
+var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame ;
 var cancelAnimationFrame = window.cancelAnimationFrame || window.mozCancelAnimationFrame;
 var animationstart;
 var left_player_x = 120;
@@ -17,6 +18,7 @@ var left_player_y = 600;
 var right_player_y = 600;
 var leftscore = 0;
 var rightscore = 0;
+//Jump
 var r_grr = 0, l_grr = 0;
 var jump_speed = 5;
 var h_vel = 5.5;
@@ -28,6 +30,7 @@ var racket_right = 0;
 var racket_right_x = 0;
 var racket_right_y = -60;
 ///////////////////////////////////////////////////////////////
+//All Boolean Variable 
 var a_pressed = false;
 var s_pressed = false;
 var d_pressed = false;
@@ -39,9 +42,12 @@ var jump_right = false;
 var rotate_flag_right = false;
 var rotate_flag_left = false;
 ///////////////////////////////////////////////////////////////
+//All Audio Variable 
 var whistle = new Audio('/assests/whistle.mp3');
 var hit = new Audio('/assests/hit.mp3');
+var finish = new Audio('/assests/finish.mp3');
 ///////////////////////////////////////////////////////////////
+//All Images Variable 
 var img = new Image();
 var imgleftplayer = leftplayer = new Image();
 var imgrightplayer = rightplayer = new Image();
@@ -60,6 +66,7 @@ imgrightplayer.src = '../Images/right.png';
 egg.src = '../Images/egg.png';
 no_egg.src='../Images/blank.png';
 ////////////////////////////console.log(Arena);////////////////
+//Codn Variable for Arena
 var Arena = sessionStorage.getItem("Arena");
 if (Arena == "Arena1") {
     canvas.style.backgroundImage = "url('/Images/back1.png')"
@@ -71,6 +78,7 @@ else if (Arena == "Arena3") {
     canvas.style.backgroundImage = "url('/Images/back3.png')"
 }
 ////////////////////////////console.log(Bird);////////////////
+//Codn Variable for Birds
 var Bird = sessionStorage.getItem("Bird");
 if (Bird == "Bird_blue") {
     imgleftplayer.src = '../Images/left.png';
@@ -91,6 +99,7 @@ else if (Bird == "Bird_white") {
     imgleftplayer.src = '../Images/left_white.png';
 }
 ////////////////////////////console.log(Pig);////////////////
+//Codn Variable for Pig
 var Pig =sessionStorage.getItem("Pig");
 if (Pig=="pig_green")
 {
@@ -109,10 +118,12 @@ else if (Pig=="pig_zombie")
     imgrightplayer.src='../Images/right_zombie.png';
 }
 ///////////////////////////////////////////////////////////////
+//Initial Animation start Request
 animationstart = requestAnimationFrame(draw);
 ///////////////////////////////////////////////////////////////
 function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+    //Shuttle Dir'n
     if (flag == 0 || flag == 2 || flag == 4) ctx.drawImage(img, x_pos, y_pos, 30, 30);
     else rotate_shuttle();
 
@@ -129,6 +140,7 @@ function draw() {
 
 }
 ///////////////////////////////////////////////////////////////
+//Used to Reset Position
 function ResetPosition() {
     setTimeout(function () {
         location.reload();
@@ -136,6 +148,7 @@ function ResetPosition() {
 
 }
 ///////////////////////////////////////////////////////////////
+//Rotate Shuttle Logic
 function rotate_shuttle() {
     ctx.save();
     ctx.translate(40, 40);
@@ -144,6 +157,7 @@ function rotate_shuttle() {
     ctx.restore();
 }
 ///////////////////////////////////////////////////////////////
+//Rotate Racket to left Logic
 function rotate_racket_left() {
     ctx.save();
     ctx.translate(left_player_x - 60, left_player_y);
@@ -159,6 +173,7 @@ function rotate_racket_left() {
 }
 
 ///////////////////////////////////////////////////////////////
+//Rotate Racket to Right Logic
 function rotate_racket_right() {
     ctx.save();
     ctx.translate(right_player_x - 60, right_player_y);
@@ -173,6 +188,7 @@ function rotate_racket_right() {
     ctx.restore();
 }
 ///////////////////////////////////////////////////////////////
+//Check shuttle and ground logic
 function CheckGround() {
     if (x_pos <= 100 || x_pos >= 1300) {
         cancelAnimationFrame(animationstart);
@@ -212,6 +228,7 @@ function CheckGround() {
     }
 }
 ///////////////////////////////////////////////////////////////
+//Used to show prompt Message
 function msgShownFN(str) {
     ctx.save();
     ctx.translate(-canvas.width / 2, -100);
@@ -230,7 +247,22 @@ function msgShownFN(str) {
         msgShown = false;
     }, 2000)
 }
+/////////////////////////////////////////////////////////////
+function FinishFN(str) {
+    if(str=="Pig")
+    {
+        sessionStorage.setItem("Win", "Pig");
+        window.location = "/end.html";
+    }
+    else 
+    {
+        sessionStorage.setItem("Win", "Bird");
+        window.location = "/end.html";
+    }
+}
+
 ///////////////////////////////////////////////////////////////
+//Fn for Left Player
 function LeftPlayer() {
     ctx.beginPath();
     if (rotate_flag_left) rotate_racket_left();
@@ -249,6 +281,7 @@ function LeftPlayer() {
 
 }
 ///////////////////////////////////////////////////////////////
+//Fn for Right Player
 function RightPlayer() {
     ctx.beginPath();
 
@@ -267,6 +300,7 @@ function RightPlayer() {
 
 }
 ///////////////////////////////////////////////////////////////
+//Fn for left jump
 function Jump_left() {
     if (jump_left && s_pressed) {
 
@@ -288,6 +322,7 @@ function Jump_left() {
 }
 
 ///////////////////////////////////////////////////////////////
+//Fn for left jump
 function Jump_right() {
     if (jump_right) {
 
@@ -307,11 +342,13 @@ function Jump_right() {
     }
 }
 ///////////////////////////////////////////////////////////////
+//Fn for calculate Distance
 function distance(x1, y1, x2, y2) {
     return Math.sqrt(Math.pow((x2 - x1), 2) + Math.pow((y2 - y1), 2));
 
 }
 ///////////////////////////////////////////////////////////////
+//Fn for checking net collision
 function net_collision() {
     if (y_pos >= 530 && x_pos > 690 && x_pos < 720) {
         msgShownFN("Net ");
@@ -319,6 +356,7 @@ function net_collision() {
     }
 }
 ///////////////////////////////////////////////////////////////
+//Fn for Left Egg
 function EggLeft() {
     if(localStorage.getItem("RS") >=5)ctx.drawImage(no_egg, 60, 10, 70, 70);
     else ctx.drawImage(egg, 60, 10, 70, 70);
@@ -336,6 +374,7 @@ function EggLeft() {
     else ctx.drawImage(egg, 300, 10, 70, 70);
 }
 ///////////////////////////////////////////////////////////////
+//Fn for Right Egg
 function EggRight() {
     if(localStorage.getItem("LS") >=5)ctx.drawImage(no_egg, 938, 10, 70, 70);
     else ctx.drawImage(egg, 938, 10, 70, 70);
@@ -353,6 +392,7 @@ function EggRight() {
     else ctx.drawImage(egg, 1178, 10, 70, 70);
 }
 ///////////////////////////////////////////////////////////////
+//Fn for Control
 function ControlCheck() {
     if (flag == 0 && s_pressed) {
         forward();
@@ -367,14 +407,14 @@ function ControlCheck() {
     if (flag == 2) {
         forward();
         drop_shot_f_f();
-        console.log("forward ->", gr);
+        //console.log("forward ->", gr);
 
     }
 
     if (flag == 3) {
         backward();
         drop_shot_f_b();
-        console.log("backward->", gr);
+        //console.log("backward->", gr);
 
     }
     if (flag == 4) {
@@ -428,17 +468,18 @@ function drop_shot_b_b() {     //drop shot from back to front (backward)
     gr += 0.1;
 }
 
-
+///////////////////////////////////////////////////////////////
+//Fn for Checking win Logic
 function win_logic(){
     if(rightscore ==5){
-        msgShownFN("Bad Piggy has won the game!");
+        FinishFN("Pig");
         localStorage.setItem("RS", 0);
         localStorage.setItem("LS", 0);
 
     }
 
     else if(leftscore ==5){
-        msgShownFN("Angry Bird has won the game!"); 
+        FinishFN("Bird"); 
         localStorage.setItem("RS", 0);
         localStorage.setItem("LS", 0);
     }

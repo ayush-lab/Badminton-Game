@@ -1,0 +1,55 @@
+@import "https://fonts.googleapis.com/css?family=Bree+Serif&display=swap";
+@import "https://fonts.googleapis.com/css2?family=Poppins:wght@800&display=swap";
+
+
+body {
+    margin: 0;
+    color: white;
+    background-size: cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-image: url("https://html5.gamedistribution.com/ec111b02d2554b599732a2d0a96419e5/media/graphics/game/bg/chara-select-bg.png");
+}
+::-webkit-scrollbar {
+    width: 12px;
+    background-color: #160824;
+}
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(transparent,#3b2476);
+    border-radius: 6px;
+}
+
+.Box h1 {
+    text-align: center;
+    font-family: "Poppins";
+    font-size: 6rem;
+}
+.Box p {
+    text-align: center;
+    top: 30%;
+    font-family: "Bree Serif";
+    font-size: 3rem;
+}
+.btn {
+    display: inline-block;
+    padding: 10px 30px;
+    font-weight: lighter;
+    font-size: 2rem;
+    font-family: "Poppins";
+    text-decoration: none;
+    text-transform: uppercase;
+    border-radius: 200px;
+    margin-top: 5%;
+}
+
+.button {
+    background-color: transparent;
+    color: white;
+    left: 40%;
+    margin-right: 15px;
+    border: 0.5rem solid white;
+    position:relative;
+}
+.button:hover {
+    transform: scale(1.2);
+}

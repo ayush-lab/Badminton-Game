@@ -1,7 +1,6 @@
 @import "https://fonts.googleapis.com/css?family=Bree+Serif&display=swap";
 @import "https://fonts.googleapis.com/css2?family=Dosis:wght@500&display=swap";
 
-
 body {
     margin: 0;
     color: white;
@@ -126,5 +125,3 @@ h3 {
     100%{ transform: scaleX(1);}
   
   }
-  
- 
